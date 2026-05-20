@@ -1,4 +1,6 @@
-// script.js
+// ==========================================
+// 1. DATA STRUCTURE DEFINITIONS
+// ==========================================
 
 const universities = [
   {
@@ -122,10 +124,13 @@ const stats = [
   { value: '15+', label: 'Years Experience' },
 ];
 
+// ==========================================
+// 2. COMPONENT DOM CREATION FUNCTIONS
+// ==========================================
+
 function createUniversityCard(university) {
   const article = document.createElement('article');
   article.className = 'university-card';
-
   article.innerHTML = `
     <div class="university-image">
       <img src="${university.image}" alt="${university.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=900&q=80'" />
@@ -135,20 +140,17 @@ function createUniversityCard(university) {
       <p>${university.location}</p>
     </div>
   `;
-
   return article;
 }
 
 function createFeatureCard(feature) {
   const card = document.createElement('div');
   card.className = 'feature-card';
-
   card.innerHTML = `
     <div class="feature-icon" aria-hidden="true">${feature.title.charAt(0)}</div>
     <h3>${feature.title}</h3>
     <p>${feature.description}</p>
   `;
-
   return card;
 }
 
@@ -177,6 +179,10 @@ function createTestimonialCard(testimonial) {
   `;
   return card;
 }
+
+// ==========================================
+// 3. UI RENDERING CORE ENGINE
+// ==========================================
 
 function renderCards() {
   const universitiesGrid = document.getElementById('universities-grid');
@@ -212,19 +218,26 @@ function renderCards() {
   }
 }
 
+// ==========================================
+// 4. MODAL & SCROLL CONTROLLERS
+// ==========================================
+
 function toggleModal(open) {
   const modal = document.getElementById('modal');
   if (!modal) return;
   modal.classList.toggle('hidden', !open);
   modal.setAttribute('aria-hidden', String(!open));
 
-  // Reset modal layout views if launching fresh from a new button trigger
+  // Reset modal layout views back to clean inputs if launching fresh
   if (open) {
     const form = document.getElementById('modal-form');
     const thankYouBox = document.getElementById('thank-you-message');
-    if (form && thankYouBox) {
+    const errorBox = document.getElementById('error-message');
+    
+    if (form && thankYouBox && errorBox) {
       form.classList.remove('hidden');
       thankYouBox.classList.add('hidden');
+      errorBox.classList.add('hidden'); 
       resetButton();
     }
   }
@@ -246,6 +259,10 @@ function resetButton() {
     submitBtn.disabled = false;
   }
 }
+
+// ==========================================
+// 5. EVENT LISTENERS & BACKEND PLUMBING
+// ==========================================
 
 function attachEvents() {
   const openButtons = document.querySelectorAll('[data-open-modal]');
@@ -286,13 +303,16 @@ function attachEvents() {
     nextButton.addEventListener('click', () => scrollTestimonials(1));
   }
 
-  // ★ PIPED PYTHON FASTAPI BACKEND SUBMISSION INTEGRATION ★
+  // INTEGRATION PIPELINE: FASTAPI EMAIL BACKEND SUBMISSION
   const form = document.getElementById('modal-form');
   const thankYouBox = document.getElementById('thank-you-message');
+  const errorBox = document.getElementById('error-message');
+  const retryBtn = document.getElementById('retry-btn');
 
-  if (form && thankYouBox) {
+  if (form && thankYouBox && errorBox) {
+    
     form.addEventListener('submit', function (event) {
-      event.preventDefault(); // Halt default browser refresh behaviors
+      event.preventDefault(); 
 
       const submitBtn = form.querySelector('button[type="submit"]');
       if (submitBtn) {
@@ -300,7 +320,6 @@ function attachEvents() {
         submitBtn.disabled = true;
       }
 
-      // Package original text input variables into structured JSON schemas
       const payload = {
         name: form.elements['name'].value,
         email: form.elements['email'].value,
@@ -308,7 +327,8 @@ function attachEvents() {
         message: form.elements['message'].value || 'No message provided.'
       };
 
-      // Push asynchronous fetch network parameters across port 8000
+      // NOTE: Swap 'http://localhost:8000/api/send-email' with your production URL 
+      // (e.g., 'https://unimed-backend.onrender.com/api/send-email') once hosted live.
       fetch('http://localhost:8000/api/send-email', {
         method: 'POST',
         headers: {
@@ -319,24 +339,36 @@ function attachEvents() {
       .then(async (response) => {
         const data = await response.json();
         if (response.ok && data.success) {
-          // Success structural transitions: Swap card spaces out smoothly
           form.classList.add('hidden');
           thankYouBox.classList.remove('hidden');
           form.reset();
         } else {
-          alert(data.detail || 'An error occurred on the Python server.');
-          resetButton();
+          console.error('Server side operational error:', data.detail);
+          showErrorView();
         }
       })
       .catch((error) => {
-        console.error('Connection Error:', error);
-        alert('Could not connect to your custom Python email server. Make sure your Uvicorn system is actively running on port 8000!');
-        resetButton();
+        console.error('Network pipeline connection error:', error);
+        showErrorView();
       });
     });
+
+    function showErrorView() {
+      form.classList.add('hidden');
+      errorBox.classList.remove('hidden');
+    }
+
+    if (retryBtn) {
+      retryBtn.addEventListener('click', () => {
+        errorBox.classList.add('hidden');
+        form.classList.remove('hidden');
+        resetButton();
+      });
+    }
   }
 }
 
+// Initialize application on paint complete
 window.addEventListener('DOMContentLoaded', () => {
   renderCards();
   attachEvents();
