@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unimed Overseas | MBBS Admission</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <span class="logo-icon">U</span>Unimed<span class="logo-dot">Overseas</span>
+        </div>
+        <nav class="site-nav">
+          <a href="#universities">Universities</a>
+          <a href="#features">Why MBBS?</a>
+          <a href="#stats">Success</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <button class="btn btn-primary" data-open-modal>
+          Apply Now
+        </button>
+      </div>
+    </header>
+
+    <main class="page-root">
+      
+      <section class="hero-immersive-section">
+        <div class="hero-ambient-glow"></div>
+        <div class="hero-immersive-grid">
+          
+          <div class="hero-lead-block">
+            <div class="hero-tagline">
+              <span class="dot-indicator"></span> Global Medical Education
+            </div>
+            <h1>Your Medical Career Begins Globally.</h1>
+            <p class="hero-description">
+              Personalized university shortlists, direct scholarship guidance, and end-to-end visa support. Handled transparently by experts from application to arrival.
+            </p>
+            <div class="hero-button-group">
+              <button class="btn btn-primary" data-open-modal>Book Free Consultation</button>
+              <button class="btn btn-outline" data-scroll-target>Explore Programs &rarr;</button>
+            </div>
+          </div>
+
+          <div class="hero-visual-block">
+            <div class="hero-image-frame">
+              <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80" alt="Medical Education Framework" loading="lazy" />
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="app-shell">
+        
+        <section id="universities" class="section-block">
+          <div class="section-header">
+            <span class="section-badge">Partner Institutions</span>
+            <h2>Top Medical Universities</h2>
+            <p>Explore elite, globally recognized medical destinations offering premium English-medium curriculums and excellent clinical training platforms.</p>
+          </div>
+
+          <div class="university-grid-container">
+            <div id="universities-grid" class="university-static-grid">
+              </div>
+          </div>
+        </section>
+
+        <section id="features" class="section-block section-alt">
+          <div class="section-header">
+            <h2>Why Choose Unimed</h2>
+            <p>We deliver reliable admissions services with a strong medical education focus.</p>
+          </div>
+          <div id="feature-grid" class="feature-grid"></div>
+        </section>
+
+        <section id="stats" class="section-block">
+          <div class="section-header">
+            <h2>Results That Matter</h2>
+            <p>Our track record shows the quality and reliability of our placement services.</p>
+          </div>
+          <div id="stats-grid" class="stats-grid"></div>
+        </section>
+
+        <section id="testimonials" class="section-block section-alt">
+          <div class="section-header">
+            <h2>Student Testimonials</h2>
+            <p>Real stories from students who achieved their MBBS goals with Unimed Overseas.</p>
+          </div>
+          <div class="testimonial-wrapper">
+            <button class="testimonial-nav testimonial-prev" type="button" data-testimonial-prev aria-label="Previous testimonials">‹</button>
+            <div id="testimonial-grid" class="testimonial-grid"></div>
+            <button class="testimonial-nav testimonial-next" type="button" data-testimonial-next aria-label="Next testimonials">›</button>
+          </div>
+        </section>
+
+        <section id="contact" class="cta-section">
+          <div class="cta-panel">
+            <div>
+              <span>Ready to begin?</span>
+              <h2>Schedule your free MBBS planning consultation today.</h2>
+              <p>
+                Our admissions team is ready to guide you through every step from application to visa.
+              </p>
+            </div>
+            <button class="btn btn-secondary" data-open-modal>
+              Book Consultation
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="logo-icon-sm">U</span>Unimed Overseas
+          </div>
+          <p>Helping future doctors secure MBBS admission, visas, and support for study abroad success.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Quick Links</div>
+          <a href="#universities">Universities</a>
+          <a href="#features">Why MBBS?</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <div class="footer-heading">Contact</div>
+          <a href="mailto:info@unimedoverseas.com">info@unimedoverseas.com</a>
+          <a href="tel:+1234567890">+1 234 567 890</a>
+        </div>
+      </div>
+    </footer>
+
+    <div id="modal" class="modal-backdrop hidden" aria-hidden="true">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3>Book a Consultation</h3>
+          <button type="button" class="modal-close" data-close-modal>&times;</button>
+        </div>
+        
+        <form id="modal-form" class="modal-form">
+          <label>
+            Full Name
+            <input type="text" name="name" required placeholder="Enter your name" />
+          </label>
+          <label>
+            Email Address
+            <input type="email" name="email" required placeholder="Enter your email" />
+          </label>
+          <label>
+            Phone Number
+            <input type="tel" name="phone" required placeholder="Enter your phone number" />
+          </label>
+          <label>
+            Message
+            <input type="text" name="message" placeholder="Tell us your goal" />
+          </label>
+          <button type="submit" class="btn btn-primary">Submit Request</button>
+        </form>
+
+        <div id="thank-you-message" class="hidden" style="padding: 40px 24px; text-align: center;">
+          <div style="font-size: 3.5rem; color: #059669; margin-bottom: 12px;">✓</div>
+          <h3 style="color: #042f1a; font-size: 1.5rem; margin-bottom: 8px;">Submission Received!</h3>
+          <p style="color: #4b6b5b; font-size: 0.95rem; line-height: 1.6;">
+            Thank you for choosing Unimed. Our advisory desk will reach out to your provided details shortly.
+          </p>
+        </div>
+        
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
