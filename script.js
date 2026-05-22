@@ -135,7 +135,7 @@ function createUniversityCard(university) {
     <div class="university-image">
       <img src="${university.image}" alt="${university.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=900&q=80'" />
     </div>
-    <div class="university-overlay">
+    <div class="university-details">
       <h3>${university.name}</h3>
       <p>${university.location}</p>
     </div>
