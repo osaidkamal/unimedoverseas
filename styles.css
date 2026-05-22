@@ -810,4 +810,22 @@ body {
   }
   .testimonial-nav { display: none !important; }
   
+.header-inner {
+    flex-wrap: wrap;       /* Allows elements to drop to the next line instead of colliding */
+    justify-content: center; /* Centers both items beautifully on small mobile screens */
+    gap: 12px;             /* Adds a clean gap between the title and button when they stack */
+    padding: 12px 16px;    /* Tighter padding for mobile screens */
+  }
+
+  .brand {
+    font-size: 1.15rem;    /* Optimizes brand font size for small displays */
+  }
+
+  .site-header .btn {
+    width: 100%;           /* Optional: Makes the button full-width on mobile for an app-like experience */
+    max-width: 280px;      /* Prevents the button from becoming too wide */
+    padding: 10px 20px;    /* Makes the button slightly more compact */
+    font-size: 0.9rem;
+  }
+  
 }
